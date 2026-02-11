@@ -1,19 +1,16 @@
-- name: install and start mysql
+- name: install and start mysql (mariadb)
   hosts: web
   become: yes
 
   tasks:
 
-    - name: install mysql server
-      ansible.builtin.yum:
-        name: mysql-server
+    - name: install mariadb server
+      ansible.builtin.dnf:
+        name: mariadb105-server
         state: present
 
-    - name: start mysql service
+    - name: start mariadb service
       ansible.builtin.service:
-        name: mysqld
+        name: mariadb
         state: started
         enabled: yes
-
-
-
